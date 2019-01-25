@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import RepoGrid from "./RepoGrid";
+import Languages from './Languages';
 
 const Landing = () => {
   const [repos, setRepos] = useState([]);
-  const [query, setQuery] = useState("javascript");
+  const [query, setQuery] = useState("JavaScript");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const searchInputRef = useRef();
 
   useEffect(() => {
     fetchRepos(query);
-  }, []);
+  }, [query]);
 
   const fetchRepos = async () => {
     try {
@@ -37,19 +38,16 @@ const Landing = () => {
     setQuery("");
     searchInputRef.current.focus();
   };
+   
+   const handleChange = e => {
+      setQuery(e.target.value)
+   }
   return (
     <div className="container w-full mt-3 mx-auto p-4 m-2 bg-grey-light shadow-lg rounded">
       <h1 className="text-grey-darkest font-semibold mb-2">GitHub-Tool</h1>
-      <small className="italic ml-3">Browse some repos!</small>
+        <small className="italic ml-3">Browsing <b>{query}</b> repos</small>
       <form onSubmit={handleSearch} className="mb-3 p-2">
-        <input
-          type="text"
-          placeholder="search"
-          onChange={e => setQuery(e.target.value)}
-          value={query}
-          ref={searchInputRef}
-          className="border p-1 rounded"
-        />
+           <Languages onChange={handleChange}/>
         <button
           type="submit"
           className="bg-red-light border border-red text-white rounded p-1 mx-2"
