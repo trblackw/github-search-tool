@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import languages from "../languages.json";
 
 const Languages = ({ onChange }) => {
+  //build select-dropdown from languages.json file
   return (
     <div className="inline-block relative w-64 p-1">
       <select

@@ -31,7 +31,7 @@ const RepoGrid = ({ repos }) => (
 );
 
 RepoGrid.propTypes = {
-  repos: PropTypes.arrayOf(PropTypes.object)
+  repos: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default RepoGrid;
