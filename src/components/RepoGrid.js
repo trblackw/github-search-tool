@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "@reach/router";
 import styled from "styled-components";
 
 const RepoGrid = ({ repos }) => (
   <Grid>
     {repos.map((repo, i) => (
-      <div key={repo.name} className="container p-2">
+      <div key={repo.id} className="container p-2">
         <div className="font-thin text-center">
           <span>#{i + 1}</span> -- <span>{repo.stargazers_count} stars</span>
         </div>
@@ -16,19 +17,22 @@ const RepoGrid = ({ repos }) => (
               alt={`avatar for ${repo.owner.login}`}
             />
           </div>
-
-          <a href={repo.html_url} className="text-black font-bold">
+          <Link to={`/${repo.id}`} className="text-black font-bold">
             {repo.name}
-          </a>
+          </Link>
           <br />
-          <span className="font-thin text-grey-darkest">@{repo.owner.login}</span>
+          <span className="font-thin text-grey-darkest">
+            @{repo.owner.login}
+          </span>
         </div>
       </div>
     ))}
   </Grid>
 );
 
-RepoGrid.propTypes = {};
+RepoGrid.propTypes = {
+  repos: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default RepoGrid;
 
@@ -47,5 +51,10 @@ const Grid = styled("div")`
     width: 150px;
     border-radius: 50%;
     object-fit: cover;
+  }
+
+  a:hover {
+    transition: color 200ms ease;
+    color: hsl(0, 55%, 57%);
   }
 `;
