@@ -57,7 +57,7 @@ const Landing = () => {
         <button
           type="button"
           onClick={handleClearSearch}
-          className="bg-white text-red-light border border-red rounded p-1"
+          className="bg-white text-red-light rounded p-1"
         >
           Clear
         </button>
